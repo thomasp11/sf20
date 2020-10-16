@@ -1,0 +1,16 @@
+[Unit]
+Description=Listen on port
+After=network.target
+
+[Service]
+Type=simple
+
+# IP to listen on
+Environment="IP=0.0.0.0"
+
+ExecStart=/usr/bin/nc -l -n -k ${IP} %i
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
